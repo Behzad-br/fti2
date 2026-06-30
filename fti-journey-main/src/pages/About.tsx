@@ -200,7 +200,7 @@ const About = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button size="lg" className="rounded-full px-12 h-16 text-lg font-black shadow-[0_30px_60px_-15px_rgba(249,115,22,0.6)] bg-primary hover:bg-orange-600 border-2 border-white/20 transition-all duration-500 group overflow-hidden relative" asChild>
-                      <Link to="/apply" className="flex items-center gap-4">
+                      <Link to="/free-consultation" className="flex items-center gap-4">
                         <span className="relative z-10 flex items-center gap-4 text-white">
                           Start Strategy Session
                           <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-700" />
@@ -654,7 +654,7 @@ const About = () => {
                   className="bg-white text-primary hover:bg-slate-100 rounded-full px-12 h-16 text-lg font-black shadow-xl group transition-all"
                   asChild
                 >
-                  <Link to="/apply" className="flex items-center gap-3">
+                  <Link to="/free-consultation" className="flex items-center gap-3">
                     Get Free Strategy Session
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
                   </Link>

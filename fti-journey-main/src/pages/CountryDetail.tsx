@@ -282,7 +282,7 @@ const CountryDetail = () => {
                     className="w-full bg-white text-primary hover:bg-white/90"
                     asChild
                   >
-                    <Link to="/apply">Apply Now</Link>
+                    <Link to="/free-consultation">Apply Now</Link>
                   </Button>
                 </motion.div>
               </div>

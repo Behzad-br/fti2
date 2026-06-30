@@ -167,7 +167,7 @@ const PTE = () => {
                         className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-bold text-lg shadow-[0_0_20px_rgba(255,165,0,0.4)] border border-orange-400 h-16"
                         asChild
                       >
-                        <Link to="/apply" className="flex items-center justify-center">
+                        <Link to="/free-consultation" className="flex items-center justify-center">
                           Schedule Free Visit
                           <ArrowRight className="h-5 w-5 ml-3" />
                         </Link>

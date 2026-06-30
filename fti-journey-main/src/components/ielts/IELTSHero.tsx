@@ -182,15 +182,11 @@ const IELTSHero = () => {
                         variants={itemVariants}
                         className="flex flex-col sm:flex-row gap-5 pt-8 w-full sm:w-auto"
                     >
-                        <Link to="/apply" className="w-full sm:w-auto">
-                            <motion.button 
-                                whileHover={{ scale: 1.03, boxShadow: '0 15px 40px rgba(255,165,0,0.4)' }}
-                                whileTap={{ scale: 0.97 }}
-                                className="w-full sm:w-auto bg-gradient-to-r from-primary to-orange-500 text-white px-6 md:px-10 py-4 md:py-5 rounded-full text-lg md:text-xl font-black flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(255,165,0,0.3)] transition-all duration-300 group"
-                            >
-                                Start Your Journey 
-                                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
-                            </motion.button>
+                        <Link to="/apply-ielts" className="w-full sm:w-auto">
+                          <button className="w-full h-14 px-8 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-lg shadow-[0_10px_30px_-10px_rgba(249,115,22,0.5)] border-none transition-all duration-300 flex items-center justify-center">
+                            Apply for IELTS
+                            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                          </button>
                         </Link>
                         
                         <motion.button 

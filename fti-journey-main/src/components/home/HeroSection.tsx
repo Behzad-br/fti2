@@ -168,7 +168,7 @@ const HeroSection = () => {
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
               <Button size="xl" className="rounded-full px-16 h-16 text-lg font-bold shadow-button hover:shadow-hover hover:-translate-y-1 active:scale-95 transition-all duration-300 group reflection-sweep overflow-hidden" asChild>
-                <Link to="/apply">
+                <Link to="/free-consultation">
                   Free Consultation
                   <ArrowRight className="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>

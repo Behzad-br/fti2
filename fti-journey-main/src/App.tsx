@@ -14,6 +14,8 @@ import Destinations from "./pages/Destinations";
 import CountryDetail from "./pages/CountryDetail";
 import Contact from "./pages/Contact";
 import Apply from "./pages/Apply";
+import ApplyIELTS from "./pages/ApplyIELTS";
+import FreeConsultation from "./pages/FreeConsultation";
 import Events from "./pages/Events";
 import Success from "./pages/Success";
 import NotFound from "./pages/NotFound";
@@ -53,6 +55,8 @@ const AnimatedRoutes = () => {
         <Route path="/destinations/:country" element={<PageTransition><CountryDetail /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/apply" element={<PageTransition><Apply /></PageTransition>} />
+        <Route path="/apply-ielts" element={<PageTransition><ApplyIELTS /></PageTransition>} />
+        <Route path="/free-consultation" element={<PageTransition><FreeConsultation /></PageTransition>} />
 
         <Route path="/events" element={<PageTransition><Events /></PageTransition>} />
         <Route path="/success" element={<PageTransition><Success /></PageTransition>} />

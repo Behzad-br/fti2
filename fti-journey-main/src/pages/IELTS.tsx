@@ -581,7 +581,7 @@ const IELTS = () => {
                 <StaggerContainer className="flex flex-col gap-4 mt-8 md:mt-0">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button size="lg" className="w-full h-16 text-lg font-black rounded-2xl shadow-[0_10px_30px_rgba(255,165,0,0.3)] hover:shadow-[0_15px_40px_rgba(255,165,0,0.5)] transition-all duration-300 bg-gradient-to-r from-primary to-orange-500 text-white border-none" asChild>
-                      <Link to="/apply">Book Free Consultation <ArrowRight className="ml-3 w-5 h-5" /></Link>
+                      <Link to="/free-consultation">Book Free Consultation <ArrowRight className="ml-3 w-5 h-5" /></Link>
                     </Button>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -604,7 +604,7 @@ const IELTS = () => {
           className="md:hidden fixed bottom-6 left-6 right-6 z-50 flex justify-center"
         >
           <Button className="w-full h-16 rounded-2xl bg-gradient-to-r from-primary to-orange-500 text-white shadow-[0_20px_40px_rgba(255,165,0,0.4)] text-lg font-black border-none active:scale-95 transition-transform" asChild>
-            <Link to="/apply">Book Demo Class Now</Link>
+            <Link to="/apply-ielts">Book Demo Class Now</Link>
           </Button>
         </motion.div>
       </div>
