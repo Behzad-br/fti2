@@ -1,0 +1,217 @@
+import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, MessageCircle, Star, BookOpen, Headphones, PenTool, Mic, Globe, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const floatingIcons = [
+    { Icon: BookOpen, top: '15%', left: '10%', delay: 0 },
+    { Icon: Headphones, top: '65%', left: '15%', delay: 1.2 },
+    { Icon: PenTool, top: '25%', right: '12%', delay: 0.5 },
+    { Icon: Mic, top: '70%', right: '8%', delay: 1.8 },
+    { Icon: Globe, top: '45%', left: '80%', delay: 2.5 }
+];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1,
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: { 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        transition: { type: 'spring', stiffness: 80, damping: 20, mass: 1 } 
+    }
+};
+
+const IELTSHero = () => {
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 150]);
+
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+
+    return (
+        <div className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden bg-slate-50 pt-32 pb-20">
+            {/* Modern Grid Background */}
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+            {/* Ambient Animated Glows */}
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-[120px] animate-pulse duration-[4000ms] mix-blend-multiply" />
+            <div className="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] mix-blend-multiply" />
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay z-0" />
+
+            {/* Floating Energy Particles */}
+            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+                {Array.from({ length: 35 }).map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full shadow-[0_0_15px_rgba(255,140,0,0.6)] mix-blend-screen"
+                        style={{
+                            backgroundColor: i % 2 === 0 ? '#f97316' : '#fbbf24', // orange-500 or amber-400
+                            width: Math.random() * 5 + 3,
+                            height: Math.random() * 5 + 3,
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            y: [0, -80, 0],
+                            x: [0, Math.random() * 50 - 25, 0],
+                            opacity: [0, 0.8, 0],
+                            scale: [0.5, 1.8, 0.5],
+                        }}
+                        transition={{
+                            duration: 8 + Math.random() * 6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: Math.random() * 10,
+                        }}
+                    />
+                ))}
+            </div>
+
+            {/* Floating Elements layer */}
+            {mounted && floatingIcons.map((item, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute z-20 hidden lg:flex items-center justify-center w-24 h-24 rounded-[2.5rem] bg-white/70 border border-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(255,165,0,0.15)] hover:shadow-[0_20px_50px_rgba(255,140,0,0.4)] transition-all duration-300 hover:-translate-y-2 group"
+                    style={{ top: item.top, left: item.left, right: item.right }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ 
+                        y: [0, -25, 0],
+                        opacity: 1,
+                        scale: 1,
+                        rotate: [0, 10, -10, 0]
+                    }}
+                    transition={{ 
+                        y: { duration: 6 + i, repeat: Infinity, ease: "easeInOut", delay: item.delay },
+                        rotate: { duration: 8 + i, repeat: Infinity, ease: "easeInOut", delay: item.delay },
+                        opacity: { duration: 1.2, delay: item.delay },
+                        scale: { duration: 1.2, delay: item.delay, type: 'spring' }
+                    }}
+                    whileHover={{ scale: 1.15, rotate: 0 }}
+                >
+                    <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
+                    <item.Icon className="w-12 h-12 text-orange-500 drop-shadow-[0_0_15px_rgba(255,140,0,0.6)] group-hover:scale-110 transition-transform duration-300" />
+                </motion.div>
+            ))}
+
+            <motion.div 
+                className="container mx-auto px-4 relative z-30"
+                style={{ y: y1 }}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <div className="flex flex-col items-center text-center max-w-5xl mx-auto space-y-10">
+
+                    {/* Trust Badge */}
+                    <motion.div 
+                        variants={itemVariants}
+                        whileHover={{ y: -5 }}
+                        className="inline-flex items-center gap-4 bg-white/90 backdrop-blur-2xl px-8 py-3.5 rounded-full border-2 border-orange-100 shadow-[0_12px_40px_rgba(255,140,0,0.15)] group hover:bg-white transition-all cursor-pointer hover:border-orange-200"
+                    >
+                        <div className="flex -space-x-2">
+                            {[...Array(4)].map((_, i) => (
+                                <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-orange-400 border-2 border-white flex items-center justify-center shadow-md">
+                                    <Star className="w-4 h-4 text-white fill-white" />
+                                </div>
+                            ))}
+                        </div>
+                        <div className="w-[1px] h-6 bg-slate-200 mx-1" />
+                        <span className="text-sm md:text-base font-bold text-slate-800 tracking-wide group-hover:text-primary transition-colors">
+                            The #1 IELTS Institute in Gujranwala
+                        </span>
+                    </motion.div>
+
+                    {/* Main Title */}
+                    <motion.div 
+                        variants={itemVariants}
+                        className="space-y-4 md:space-y-6 relative"
+                    >
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.2] md:leading-[1.25] drop-shadow-sm">
+                            <span className="font-extrabold text-slate-700">Unlock Your</span> <br className="hidden md:block" />
+                            <span className="relative inline-block font-black italic text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-500 to-amber-500 pb-2 mt-1 md:mt-4 pr-2 md:pr-4">
+                                Global Potential
+                                <motion.div 
+                                    initial={{ width: 0 }}
+                                    animate={{ width: "100%" }}
+                                    transition={{ duration: 1.2, delay: 0.8, ease: "easeInOut" }}
+                                    className="absolute bottom-0 left-0 h-2 bg-gradient-to-r from-primary to-amber-400 rounded-full blur-sm opacity-50" 
+                                />
+                                <motion.div 
+                                    initial={{ width: 0 }}
+                                    animate={{ width: "100%" }}
+                                    transition={{ duration: 1.2, delay: 0.8, ease: "easeInOut" }}
+                                    className="absolute bottom-0 left-0 h-1.5 flex bg-gradient-to-r from-orange-300 to-primary rounded-full relative"
+                                >
+                                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-[0_0_10px_rgba(255,165,0,0.8)]" />
+                                </motion.div>
+                            </span>
+                        </h1>
+                    </motion.div>
+
+                    {/* Feature Pills */}
+                    <motion.div 
+                        variants={itemVariants}
+                        className="flex flex-wrap justify-center gap-3 md:gap-6 pt-2"
+                    >
+                        {['Daily Mock Tests', 'Personalized Feedback', 'Latest Material'].map((item, i) => (
+                            <motion.div 
+                                key={i} 
+                                whileHover={{ scale: 1.05, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex items-center gap-2 text-sm md:text-base font-bold text-slate-700 bg-white/60 backdrop-blur-sm rounded-full px-5 py-2.5 border border-orange-100 hover:border-primary/30 transition-colors shadow-sm cursor-pointer"
+                            >
+                                <CheckCircle2 className="w-5 h-5 text-primary" />
+                                {item}
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {/* Call to Actions */}
+                    <motion.div 
+                        variants={itemVariants}
+                        className="flex flex-col sm:flex-row gap-5 pt-8 w-full sm:w-auto"
+                    >
+                        <Link to="/apply" className="w-full sm:w-auto">
+                            <motion.button 
+                                whileHover={{ scale: 1.03, boxShadow: '0 15px 40px rgba(255,165,0,0.4)' }}
+                                whileTap={{ scale: 0.97 }}
+                                className="w-full sm:w-auto bg-gradient-to-r from-primary to-orange-500 text-white px-6 md:px-10 py-4 md:py-5 rounded-full text-lg md:text-xl font-black flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(255,165,0,0.3)] transition-all duration-300 group"
+                            >
+                                Start Your Journey 
+                                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
+                            </motion.button>
+                        </Link>
+                        
+                        <motion.button 
+                            whileHover={{ scale: 1.03, backgroundColor: 'rgba(255, 237, 213, 1)' }} // orange-50
+                            whileTap={{ scale: 0.97 }}
+                            className="w-full sm:w-auto bg-white backdrop-blur-xl text-slate-800 px-6 md:px-10 py-4 md:py-5 rounded-full text-lg md:text-xl font-bold border border-orange-200 shadow-sm flex items-center justify-center gap-3 transition-all duration-300 group"
+                            onClick={() => window.dispatchEvent(new CustomEvent('open-whatsapp-selector'))}
+                        >
+                            <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-[#25D366]" />
+                            Consult an Expert
+                        </motion.button>
+                    </motion.div>
+
+                </div>
+            </motion.div>
+            
+            {/* Base cinematic fade */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+        </div>
+    );
+};
+
+export default IELTSHero;
+
