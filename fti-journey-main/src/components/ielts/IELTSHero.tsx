@@ -45,12 +45,12 @@ const IELTSHero = () => {
             <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
             {/* Ambient Animated Glows */}
-            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-[120px] animate-pulse duration-[4000ms] mix-blend-multiply" />
-            <div className="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] mix-blend-multiply" />
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-[120px] animate-pulse duration-[4000ms] mix-blend-multiply hidden md:block" />
+            <div className="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[150px] mix-blend-multiply hidden md:block" />
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08] mix-blend-overlay z-0" />
 
             {/* Floating Energy Particles */}
-            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden hidden md:block">
                 {Array.from({ length: 35 }).map((_, i) => (
                     <motion.div
                         key={i}

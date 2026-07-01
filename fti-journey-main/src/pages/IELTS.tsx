@@ -49,9 +49,9 @@ const IELTS = () => {
         <ParticlesBackground />
         
         {/* Ayar-style Background Glows */}
-        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-[40%] -right-[10%] w-[600px] h-[600px] bg-orange-400/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[20%] -left-[10%] w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none hidden md:block" />
+        <div className="absolute top-[40%] -right-[10%] w-[600px] h-[600px] bg-orange-400/10 rounded-full blur-[120px] pointer-events-none hidden md:block" />
+        <div className="absolute bottom-[20%] -left-[10%] w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none hidden md:block" />
 
         <IELTSHero />
 
@@ -125,7 +125,7 @@ const IELTS = () => {
                     opacity: [0.3, 0.5, 0.3]
                   }}
                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 right-0 w-96 h-96 bg-orange-400/10 rounded-full blur-[100px]" 
+                  className="absolute top-0 right-0 w-96 h-96 bg-orange-400/10 rounded-full blur-[100px] hidden md:block" 
                 />
                 <motion.div 
                   animate={{ 
@@ -133,7 +133,7 @@ const IELTS = () => {
                     x: [0, 20, 0]
                   }}
                   transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-[80px]" 
+                  className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-[80px] hidden md:block" 
                 />
 
                 {/* The Floating Main Card */}
@@ -350,7 +350,7 @@ const IELTS = () => {
           </div>
 
           {/* Floating 3D Icons Placeholder Layer */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none hidden md:block">
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
@@ -563,9 +563,9 @@ const IELTS = () => {
               className="max-w-5xl mx-auto bg-gradient-to-br from-slate-900 via-slate-800 to-black rounded-[3rem] p-8 md:p-14 shadow-[0_30px_100px_rgba(0,0,0,0.3)] relative overflow-hidden group"
             >
               {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] mix-blend-screen pointer-events-none group-hover:scale-110 transition-transform duration-1000" />
-              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-orange-600/20 rounded-full blur-[80px] mix-blend-screen pointer-events-none group-hover:scale-110 transition-transform duration-1000" />
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay pointer-events-none" />
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] mix-blend-screen pointer-events-none group-hover:scale-110 transition-transform duration-1000 hidden md:block" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-orange-600/20 rounded-full blur-[80px] mix-blend-screen pointer-events-none group-hover:scale-110 transition-transform duration-1000 hidden md:block" />
+              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay pointer-events-none hidden md:block" />
 
               <div className="grid md:grid-cols-2 gap-10 items-center relative z-10">
                 <div>

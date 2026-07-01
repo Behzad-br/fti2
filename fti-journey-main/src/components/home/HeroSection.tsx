@@ -66,7 +66,7 @@ const HeroSection = () => {
             scale: [1, 1.1, 1]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-primary/20 blur-[80px] mix-blend-screen"
+          className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full bg-primary/20 blur-[80px] mix-blend-screen hidden md:block"
         />
         <motion.div
           animate={{
@@ -74,7 +74,7 @@ const HeroSection = () => {
             scale: [1.1, 1, 1.1]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[10%] left-[2%] w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[100px] mix-blend-screen"
+          className="absolute bottom-[10%] left-[2%] w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[100px] mix-blend-screen hidden md:block"
         />
         <motion.div
           animate={{
@@ -82,7 +82,7 @@ const HeroSection = () => {
             opacity: [0.2, 0.4, 0.2]
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-orange-400/10 to-primary/10 blur-[80px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-orange-400/10 to-primary/10 blur-[80px] hidden md:block"
         />
 
         {/* Subtle SVG shapes */}
