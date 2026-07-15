@@ -150,23 +150,7 @@ const IELTSHero = () => {
                         </h1>
                     </motion.div>
 
-                    {/* Feature Pills */}
-                    <motion.div 
-                        variants={itemVariants}
-                        className="flex flex-wrap justify-center gap-3 md:gap-6 pt-2"
-                    >
-                        {['Daily Mock Tests', 'Personalized Feedback', 'Latest Material'].map((item, i) => (
-                            <motion.div 
-                                key={i} 
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-2 text-sm md:text-base font-bold text-slate-700 bg-white/60 backdrop-blur-sm rounded-full px-5 py-2.5 border border-orange-100 hover:border-primary/30 transition-colors shadow-sm cursor-pointer"
-                            >
-                                <CheckCircle2 className="w-5 h-5 text-primary" />
-                                {item}
-                            </motion.div>
-                        ))}
-                    </motion.div>
+
 
                     {/* Call to Actions */}
                     <motion.div 
