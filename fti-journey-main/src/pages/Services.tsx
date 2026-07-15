@@ -161,71 +161,186 @@ const Services = () => {
     <Layout>
       <div className="page-transition bg-white overflow-hidden">
 
-        {/* ── HERO WITH UNIQUE ANIMATED BLOBS ── */}
-        <section className="relative py-24 md:py-40 bg-gradient-to-r from-orange-500 to-amber-500 overflow-hidden isolate">
-          {/* Animated Background Elements */}
-            <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-orange-500/20 rounded-full blur-[100px] -z-10 mix-blend-screen" 
+        {/* ── ULTRA PREMIUM ANIMATED HERO ── */}
+        <section className="relative py-28 md:py-44 bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 overflow-hidden isolate min-h-[90vh] flex items-center">
+
+          {/* Animated Grid Lines */}
+          <div className="absolute inset-0 z-0" style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }} />
+
+          {/* Large glowing orbs */}
+          <motion.div
+            animate={{ scale: [1, 1.3, 1], rotate: [0, 120, 0], x: [0, 40, 0], y: [0, -30, 0] }}
+            transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-[-15%] right-[-10%] w-[600px] h-[600px] bg-white/10 rounded-full blur-[80px] pointer-events-none"
           />
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.5, 1],
-              x: [0, 100, 0],
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[120px] -z-10 mix-blend-screen" 
+          <motion.div
+            animate={{ scale: [1, 1.4, 1], rotate: [0, -90, 0], x: [0, -60, 0] }}
+            transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+            className="absolute bottom-[-20%] left-[-10%] w-[700px] h-[700px] bg-amber-300/15 rounded-full blur-[100px] pointer-events-none"
           />
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], y: [0, 60, 0] }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-orange-300/10 rounded-full blur-[60px] pointer-events-none"
+          />
+
+          {/* Floating Particles */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                width: `${Math.random() * 8 + 4}px`,
+                height: `${Math.random() * 8 + 4}px`,
+                left: `${10 + (i * 7)}%`,
+                top: `${15 + Math.sin(i) * 30}%`,
+                background: i % 3 === 0 ? 'rgba(255,255,255,0.6)' : i % 3 === 1 ? 'rgba(251,191,36,0.7)' : 'rgba(255,255,255,0.3)',
+              }}
+              animate={{
+                y: [0, -30 - i * 3, 0],
+                x: [0, Math.sin(i) * 20, 0],
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: 4 + i * 0.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: i * 0.3,
+              }}
+            />
+          ))}
 
           <div className="container mx-auto px-4 relative z-10 text-center">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="max-w-4xl mx-auto"
+              className="max-w-5xl mx-auto"
             >
+              {/* Badge */}
+              <motion.div
+                variants={itemVariants}
+                className="flex justify-center mb-8"
+              >
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, type: 'spring' }}
+                  className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white font-bold text-xs uppercase tracking-[0.2em] px-6 py-2.5 rounded-full shadow-lg"
+                >
+                  <motion.span
+                    animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="w-2 h-2 rounded-full bg-white inline-block"
+                  />
+                  Premium Education Services
+                </motion.span>
+              </motion.div>
 
-
-              <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight tracking-tight">
-                {cmsData.servicesHeroTitle.includes('.') ? (
-                  <>
-                    {cmsData.servicesHeroTitle.split('.')[0]}.{' '}
-                    <span className="relative inline-block">
-                      <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">
-                        {cmsData.servicesHeroTitle.split('.').slice(1).join('.').trim()}
+              {/* Animated Headline — word by word */}
+              <motion.h1
+                className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-[1.05] tracking-tight"
+                variants={containerVariants}
+              >
+                {'Comprehensive Education Solutions.'.split(' ').map((word, wi) => (
+                  <motion.span
+                    key={wi}
+                    className="inline-block mr-4"
+                    variants={{
+                      hidden: { opacity: 0, y: 60, rotateX: -40 },
+                      visible: {
+                        opacity: 1, y: 0, rotateX: 0,
+                        transition: { duration: 0.7, delay: wi * 0.12, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
+                  >
+                    {word === 'Solutions.' ? (
+                      <span className="relative">
+                        <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-100 to-white">
+                          {word}
+                        </span>
+                        <motion.span
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
+                          className="absolute bottom-1 left-0 right-0 h-2 bg-white/30 rounded-full origin-left z-0"
+                        />
                       </span>
-                      <motion.span 
-                        initial={{ width: 0 }}
-                        animate={{ width: '100%' }}
-                        transition={{ delay: 1, duration: 0.8 }}
-                        className="absolute bottom-2 left-0 h-4 bg-orange-200/50 -z-0 rounded-full"
-                      />
-                    </span>
-                  </>
-                ) : (
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">
-                    {cmsData.servicesHeroTitle}
-                  </span>
-                )}
+                    ) : (
+                      <span>{word}</span>
+                    )}
+                  </motion.span>
+                ))}
               </motion.h1>
 
-              <motion.p variants={itemVariants} className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-medium">
+              {/* Description with slide-up */}
+              <motion.p
+                variants={itemVariants}
+                className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-2xl mx-auto font-medium mb-12"
+              >
                 {cmsData.servicesHeroDescription}
               </motion.p>
 
-              <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 mt-12">
-                <Link
-                  to="/free-consultation"
-                  className="inline-flex items-center justify-center border border-white/50 hover:bg-white/10 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300"
+              {/* Stats row */}
+              <motion.div
+                variants={containerVariants}
+                className="flex flex-wrap justify-center gap-8 mb-12"
+              >
+                {[{ num: '15+', label: 'Years Experience' }, { num: '5,000+', label: 'Students Placed' }, { num: '98%', label: 'Visa Success Rate' }, { num: '50+', label: 'Partner Universities' }].map((stat, si) => (
+                  <motion.div
+                    key={si}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { delay: 0.8 + si * 0.1 } },
+                    }}
+                    whileHover={{ scale: 1.1, y: -4 }}
+                    className="text-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-4"
+                  >
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1 + si * 0.15 }}
+                      className="text-3xl font-black text-white"
+                    >
+                      {stat.num}
+                    </motion.p>
+                    <p className="text-white/70 text-sm font-medium">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.div variants={itemVariants}>
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  Start Your Journey
-                </Link>
+                  <Link
+                    to="/free-consultation"
+                    className="inline-flex items-center gap-3 bg-white text-orange-600 font-black text-lg px-10 py-5 rounded-2xl shadow-2xl hover:shadow-white/30 transition-all duration-300 group"
+                  >
+                    Start Your Journey
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.2, repeat: Infinity }}
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.span>
+                  </Link>
+                </motion.div>
               </motion.div>
             </motion.div>
+          </div>
+
+          {/* Bottom wave */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 80L1440 80L1440 20C1200 60 900 0 720 20C540 40 240 0 0 20V80Z" fill="white"/>
+            </svg>
           </div>
         </section>
 
