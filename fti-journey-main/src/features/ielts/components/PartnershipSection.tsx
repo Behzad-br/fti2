@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PartnershipSection = () => {
     return (
-        <section className="relative w-full overflow-hidden bg-[#faf9f6] py-24 lg:py-32">
+        <section className="relative w-full overflow-hidden bg-[#faf9f6] py-12 lg:py-16">
             {/* Background Accents */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-orange-200/40 rounded-full blur-[120px] mix-blend-multiply" />
