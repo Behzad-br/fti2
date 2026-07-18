@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, MessageCircle, Star, BookOpen, Headphones, PenTool, Mic, Globe, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -32,9 +32,6 @@ const itemVariants = {
 };
 
 const IELTSHero = () => {
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 150]);
-
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
 
@@ -103,7 +100,6 @@ const IELTSHero = () => {
 
             <motion.div 
                 className="container mx-auto px-4 relative z-30"
-                style={{ y: y1 }}
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
