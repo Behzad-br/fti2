@@ -638,9 +638,7 @@ const PTE = () => {
         <AnimatedSection className="py-32 overflow-hidden bg-[#f5f5f5] relative">
           <div className="container mx-auto px-4 mb-16 relative z-10">
             <div className="text-center">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-white border border-orange-100 text-primary font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">Wall of Fame</span>
               <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Our Recent Successes</h2>
-              <p className="text-slate-600 max-w-2xl mx-auto text-lg">Real students, real scores. Browse through our top achievers.</p>
             </div>
           </div>
 
