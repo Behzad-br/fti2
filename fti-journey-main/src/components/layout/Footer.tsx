@@ -30,92 +30,28 @@ const Footer = () => {
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10 translate-x-1/2 translate-y-1/2" />
 
       <div className="container mx-auto px-4 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 xl:gap-20">
+        <div className="flex justify-center">
           {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="flex flex-col mb-6">
-              <Link to="/" className="inline-block mb-6 group">
+          <div className="flex flex-col items-center text-center max-w-2xl">
+            <div className="flex flex-col mb-6 items-center">
+              <Link to="/" className="inline-block mb-8 group">
                 <div className="bg-white p-3 shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-primary/20 inline-block border border-white/10 rounded-none">
                   <img
                     src="/fti_logo_transparent.png"
                     alt="FTI Consultants"
-                    className="h-14 w-auto object-contain"
+                    className="h-16 w-auto object-contain"
                   />
                 </div>
               </Link>
-              <div className="border-l-4 border-primary pl-5 py-1">
-                <p className="text-sm text-white/60 font-medium leading-relaxed italic tracking-wide">
-                  "Nurturing Careers with Integrity since 2010"
-                </p>
-              </div>
             </div>
 
-            <p className="text-white/70 text-sm mb-8 leading-relaxed font-light max-w-sm">
-              Your premium partner for overseas education. Expert guidance for UK, Canada, Australia & more with elite IELTS/PTE training and 98% visa success.
-            </p>
-
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {[Facebook, Instagram, Linkedin, Youtube, Twitter].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-1 transition-all duration-300 shadow-md">
-                  <Icon className="h-4 w-4" />
+                <a key={i} href="#" className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:-translate-y-1 transition-all duration-300 shadow-md text-white/80">
+                  <Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
-
-          </div>
-
-          {/* Quick Links */}
-          <div className="lg:pt-2">
-            <h4 className="font-bold text-lg mb-8 relative inline-block">
-              Quick Links
-              <span className="absolute -bottom-2 left-0 w-10 h-1 bg-primary rounded-full" />
-            </h4>
-            <ul className="space-y-4">
-              {quickLinks.map((link) => (
-                <li key={link.path}>
-                  {link.path.startsWith('http') ? (
-                    <a
-                      href={link.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white/60 hover:text-primary text-sm transition-all flex items-center group"
-                    >
-                      <span className="w-0 group-hover:w-3 h-[2px] bg-primary mr-0 group-hover:mr-3 transition-all duration-300" />
-                      {link.name}
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.path}
-                      className="text-white/60 hover:text-primary text-sm transition-all flex items-center group"
-                    >
-                      <span className="w-0 group-hover:w-3 h-[2px] bg-primary mr-0 group-hover:mr-3 transition-all duration-300" />
-                      {link.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Destinations */}
-          <div className="lg:pt-2">
-            <h4 className="font-bold text-lg mb-8 relative inline-block">
-              Top Destinations
-              <span className="absolute -bottom-2 left-0 w-10 h-1 bg-primary rounded-full" />
-            </h4>
-            <ul className="space-y-4">
-              {destinations.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-white/60 hover:text-primary text-sm transition-all flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-3 h-[2px] bg-primary mr-0 group-hover:mr-3 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

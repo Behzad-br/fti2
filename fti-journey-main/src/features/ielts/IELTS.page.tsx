@@ -71,7 +71,7 @@ const IELTS = () => {
           
           <div className="container mx-auto px-4 mb-16 relative z-10">
             <div className="text-center">
-              <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Our Recent Successes</h2>
+              <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Our Recent <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Successes</span></h2>
             </div>
           </div>
           
