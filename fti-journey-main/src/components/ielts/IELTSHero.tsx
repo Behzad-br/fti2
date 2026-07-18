@@ -36,7 +36,7 @@ const IELTSHero = () => {
     useEffect(() => setMounted(true), []);
 
     return (
-        <div className="relative min-h-[90vh] w-full flex items-center justify-center overflow-hidden bg-orange-500 pt-32 pb-20">
+        <div className="relative w-full flex items-center justify-center overflow-hidden bg-orange-500 py-16 md:py-24">
 
             {/* Ambient Animated Glows */}
             <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-500/20 rounded-full blur-[120px] animate-pulse duration-[4000ms] mix-blend-multiply hidden md:block" />
