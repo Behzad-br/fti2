@@ -128,36 +128,7 @@ const PartnershipSection = () => {
                             </svg>
                         </div>
 
-                        {/* Student Illustration */}
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4, type: "spring" }}
-                            className="absolute left-0 lg:left-10 top-1/2 -translate-y-1/2 z-20"
-                        >
-                            <div className="relative w-40 h-40 sm:w-56 sm:h-56 bg-gradient-to-br from-slate-800 to-slate-900 rounded-full shadow-2xl border-4 border-white flex items-center justify-center p-4">
-                                <div className="absolute inset-0 rounded-full bg-orange-500/20 animate-ping blur-xl" />
-                                {/* User avatar placeholder */}
-                                <div className="w-full h-full rounded-full overflow-hidden border-2 border-slate-700 relative bg-slate-100">
-                                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Student Journey" className="w-full h-full object-cover" />
-                                </div>
-                                {/* Floating Badge */}
-                                <motion.div 
-                                    animate={{ y: [0, -10, 0] }}
-                                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                                    className="absolute -right-4 -bottom-4 bg-white p-3 rounded-2xl shadow-xl flex items-center gap-2 border border-slate-100"
-                                >
-                                    <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                                        <CheckCircle2 className="w-5 h-5" />
-                                    </div>
-                                    <div className="text-left">
-                                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Status</div>
-                                        <div className="text-xs font-bold text-slate-800">Ready for IELTS</div>
-                                    </div>
-                                </motion.div>
-                            </div>
-                        </motion.div>
+
 
                         {/* Partner Cards */}
                         <div className="flex flex-col gap-6 z-30 relative w-full max-w-[320px] sm:max-w-[360px] mr-4 sm:mr-0">
