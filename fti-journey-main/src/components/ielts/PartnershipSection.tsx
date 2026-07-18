@@ -18,14 +18,7 @@ const PartnershipSection = () => {
                     
                     {/* Left/Top Content Area */}
                     <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-orange-600 font-bold text-xs sm:text-sm uppercase tracking-wider mb-6 shadow-sm border border-orange-100"
-                        >
-                            <ShieldCheck className="w-4 h-4" /> Official IELTS Registration Centre
-                        </motion.div>
+
 
                         <motion.h2 
                             initial={{ opacity: 0, y: 20 }}
