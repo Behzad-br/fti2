@@ -1,106 +1,225 @@
 import { motion } from 'framer-motion';
-import { Award, ShieldCheck, Star, Sparkles, Zap, Building2, Globe2 } from 'lucide-react';
+import { Plane, ShieldCheck, UserCheck, Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PartnershipSection = () => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.15 }
-        }
-    };
-
-    const cardVariants = {
-        hidden: { opacity: 0, y: 30, scale: 0.95 },
-        visible: { 
-            opacity: 1, 
-            y: 0, 
-            scale: 1,
-            transition: { type: "spring", stiffness: 120, damping: 20 }
-        }
-    };
-
     return (
-        <section className="py-32 relative overflow-hidden bg-white">
-            {/* Ambient Background */}
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] bg-orange-50 rounded-full blur-[100px] opacity-70 animate-[pulse_8s_ease-in-out_infinite]" />
-                <div className="absolute top-[20%] -right-[20%] w-[60vw] h-[60vw] bg-orange-100/50 rounded-full blur-[120px] opacity-60" />
+        <section className="relative w-full overflow-hidden bg-[#faf9f6] py-24 lg:py-32">
+            {/* Background Accents */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-orange-200/40 rounded-full blur-[120px] mix-blend-multiply" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-slate-200/50 rounded-full blur-[140px] mix-blend-multiply" />
+                {/* Dotted pattern */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
             </div>
 
-            <div className="container mx-auto px-4 relative z-10">
-                <motion.div 
-                    className="text-center max-w-4xl mx-auto mb-20 md:mb-24"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-8 leading-[1.1] tracking-tighter">
-                        Official IELTS <br/>
-                        <span className="relative inline-block px-1">
-                             <div className="absolute inset-0 bg-orange-400/20 blur-xl rounded-full" />
-                             <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 font-black">Registration Center</span>
-                        </span>
-                        <br />
-                        of <span className="text-slate-900 border-b-4 border-orange-500 pb-1">AEO & British Council</span>
-                    </h2>
-                </motion.div>
+            <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
+                    
+                    {/* Left/Top Content Area */}
+                    <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-orange-600 font-bold text-xs sm:text-sm uppercase tracking-wider mb-6 shadow-sm border border-orange-100"
+                        >
+                            <ShieldCheck className="w-4 h-4" /> Official IELTS Registration Centre
+                        </motion.div>
 
-                <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                >
-                    {/* British Council Card */}
-                    <motion.div
-                        variants={cardVariants}
-                        whileHover={{ y: -10 }}
-                        className="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-[0_20px_50px_rgba(255,165,0,0.08)] border-2 border-orange-50 flex flex-col items-center justify-center group relative overflow-hidden"
-                    >
-                        <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-orange-400 to-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                        <div className="absolute -right-20 -top-20 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight mb-6"
+                        >
+                            Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 relative">
+                                IELTS Journey
+                                <svg className="absolute w-full h-3 -bottom-1 left-0 text-orange-400/30" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
+                                </svg>
+                            </span> <br/>
+                            with Confidence
+                        </motion.h2>
+
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg sm:text-xl text-slate-600 font-medium mb-10 max-w-xl"
+                        >
+                            Trusted registration support through AEO Pakistan and British Council.
+                        </motion.p>
+
+                        {/* CTA & Trust Points */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="flex flex-col sm:flex-row items-center lg:items-start gap-6 w-full"
+                        >
+                            <Link to="/contact" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-slate-900 rounded-full hover:bg-slate-800 hover:shadow-[0_8px_25px_rgba(15,23,42,0.25)] overflow-hidden">
+                                <span className="relative z-10 flex items-center gap-2">
+                                    Register for IELTS Now
+                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                </span>
+                                <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </Link>
+                        </motion.div>
+
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                            className="flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 mt-10"
+                        >
+                            {[
+                                { icon: ShieldCheck, text: "Secure Process" },
+                                { icon: UserCheck, text: "Expert Guidance" },
+                                { icon: Clock, text: "Fast Support" }
+                            ].map((point, idx) => (
+                                <div key={idx} className="flex items-center gap-2 text-slate-700 font-medium text-sm">
+                                    <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                                        <point.icon className="w-3.5 h-3.5" />
+                                    </div>
+                                    {point.text}
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+
+                    {/* Right Illustration & Cards Area */}
+                    <div className="lg:col-span-6 relative w-full h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end">
                         
-                        <div className="h-20 md:h-24 flex items-center justify-center mb-6 group-hover:scale-105 transition-all duration-500">
-                            <img 
-                                src="/british-council-logo.png" 
-                                alt="British Council" 
-                                className="h-full w-auto object-contain drop-shadow-sm rounded-lg scale-[1.7]" 
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/British_Council_logo.svg/512px-British_Council_logo.svg.png';
-                                }}
-                            />
+                        {/* Curved Path Animation */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <svg className="w-full h-full absolute top-10 left-10 lg:left-20 opacity-40" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid slice">
+                                <motion.path 
+                                    d="M 50 400 C 100 300, 200 100, 400 150 S 500 50, 450 0" 
+                                    fill="transparent" 
+                                    stroke="url(#orangeGradient)" 
+                                    strokeWidth="4" 
+                                    strokeDasharray="10 10"
+                                    initial={{ pathLength: 0 }}
+                                    whileInView={{ pathLength: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 3, ease: "easeInOut" }}
+                                />
+                                <defs>
+                                    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#f97316" />
+                                        <stop offset="100%" stopColor="#f59e0b" />
+                                    </linearGradient>
+                                </defs>
+                                {/* Animated Airplane */}
+                                <motion.g
+                                    animate={{ 
+                                        offsetDistance: ["0%", "100%"]
+                                    }}
+                                    transition={{ 
+                                        duration: 8,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }}
+                                    style={{ 
+                                        offsetPath: "path('M 50 400 C 100 300, 200 100, 400 150 S 500 50, 450 0')",
+                                        offsetRotate: "auto"
+                                    }}
+                                >
+                                    <Plane className="w-8 h-8 text-orange-500 fill-orange-100" />
+                                </motion.g>
+                            </svg>
                         </div>
-                        
-                        <div className="flex flex-col items-center gap-3">
-                            <span className="text-xs font-black text-orange-600 uppercase tracking-[0.2em] bg-white px-4 py-2 rounded-full border border-orange-200 shadow-sm">Platinum Partner</span>
-                        </div>
-                    </motion.div>
 
-                    {/* AEO Card */}
-                    <motion.div
-                        variants={cardVariants}
-                        whileHover={{ y: -10 }}
-                        className="bg-white p-6 md:p-12 rounded-[2.5rem] shadow-[0_20px_50px_rgba(255,165,0,0.08)] border-2 border-orange-50 flex flex-col items-center justify-center group relative overflow-hidden"
-                    >
-                        <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-orange-400 to-amber-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                        <div className="absolute -right-20 -bottom-20 w-40 h-40 bg-orange-100 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        {/* Student Illustration */}
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4, type: "spring" }}
+                            className="absolute left-0 lg:left-10 top-1/2 -translate-y-1/2 z-20"
+                        >
+                            <div className="relative w-40 h-40 sm:w-56 sm:h-56 bg-gradient-to-br from-slate-800 to-slate-900 rounded-full shadow-2xl border-4 border-white flex items-center justify-center p-4">
+                                <div className="absolute inset-0 rounded-full bg-orange-500/20 animate-ping blur-xl" />
+                                {/* User avatar placeholder */}
+                                <div className="w-full h-full rounded-full overflow-hidden border-2 border-slate-700 relative bg-slate-100">
+                                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" alt="Student Journey" className="w-full h-full object-cover" />
+                                </div>
+                                {/* Floating Badge */}
+                                <motion.div 
+                                    animate={{ y: [0, -10, 0] }}
+                                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                                    className="absolute -right-4 -bottom-4 bg-white p-3 rounded-2xl shadow-xl flex items-center gap-2 border border-slate-100"
+                                >
+                                    <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <CheckCircle2 className="w-5 h-5" />
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Status</div>
+                                        <div className="text-xs font-bold text-slate-800">Ready for IELTS</div>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </motion.div>
 
-                        <div className="h-20 md:h-24 flex items-center justify-center mb-6 group-hover:scale-105 transition-all duration-500">
-                            <img 
-                                src="/aeo-logo.png" 
-                                alt="AEO Pakistan" 
-                                className="h-full w-auto object-contain drop-shadow-sm rounded-lg scale-[1.2]" 
-                            />
+                        {/* Partner Cards */}
+                        <div className="flex flex-col gap-6 z-30 relative w-full max-w-[320px] sm:max-w-[360px] mr-4 sm:mr-0">
+                            {/* British Council */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+                                className="bg-white/80 backdrop-blur-xl p-6 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-white flex items-center gap-5 hover:shadow-[0_20px_40px_rgba(249,115,22,0.1)] transition-all group"
+                            >
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-50 rounded-2xl flex items-center justify-center p-3 shrink-0 border border-slate-100 group-hover:border-orange-200 transition-colors">
+                                    <img 
+                                        src="/british-council-logo.png" 
+                                        alt="British Council" 
+                                        className="w-full h-full object-contain"
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/British_Council_logo.svg/512px-British_Council_logo.svg.png';
+                                        }}
+                                    />
+                                </div>
+                                <div>
+                                    <div className="inline-block px-3 py-1 bg-orange-50 text-orange-600 text-[10px] font-bold uppercase tracking-wider rounded-lg mb-1 border border-orange-100">
+                                        Platinum Partner
+                                    </div>
+                                    <h4 className="font-bold text-slate-900 text-sm">British Council</h4>
+                                </div>
+                            </motion.div>
+
+                            {/* AEO Pakistan */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
+                                className="bg-white/80 backdrop-blur-xl p-6 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-white flex items-center gap-5 hover:shadow-[0_20px_40px_rgba(249,115,22,0.1)] transition-all lg:ml-12 group"
+                            >
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-50 rounded-2xl flex items-center justify-center p-3 shrink-0 border border-slate-100 group-hover:border-orange-200 transition-colors">
+                                    <img 
+                                        src="/aeo-logo.png" 
+                                        alt="AEO Pakistan" 
+                                        className="w-full h-full object-contain scale-[1.2]"
+                                    />
+                                </div>
+                                <div>
+                                    <div className="inline-block px-3 py-1 bg-orange-50 text-orange-600 text-[10px] font-bold uppercase tracking-wider rounded-lg mb-1 border border-orange-100">
+                                        Official Centre
+                                    </div>
+                                    <h4 className="font-bold text-slate-900 text-sm">AEO Pakistan</h4>
+                                </div>
+                            </motion.div>
                         </div>
 
-                        <div className="flex flex-col items-center gap-3">
-                            <span className="text-xs font-black text-orange-600 uppercase tracking-[0.2em] bg-white px-4 py-2 rounded-full border border-orange-200 shadow-sm">Official Center</span>
-                        </div>
-                    </motion.div>
-                </motion.div>
+                    </div>
+                </div>
             </div>
         </section>
     );
