@@ -54,12 +54,11 @@ const PartnershipSection = () => {
                             transition={{ delay: 0.3 }}
                             className="flex flex-col sm:flex-row items-center lg:items-start gap-6 w-full"
                         >
-                            <Link to="/contact" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-slate-900 rounded-full hover:bg-slate-800 hover:shadow-[0_8px_25px_rgba(15,23,42,0.25)] overflow-hidden">
+                            <Link to="/contact" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full hover:shadow-[0_8px_25px_rgba(249,115,22,0.3)] hover:-translate-y-1 overflow-hidden">
                                 <span className="relative z-10 flex items-center gap-2">
                                     Register for IELTS Now
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </span>
-                                <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </Link>
                         </motion.div>
 
