@@ -78,8 +78,8 @@ const CursorMascot = ({ mood = 'idle' }: CursorMascotProps) => {
       <motion.div className="absolute top-0 left-0" style={{ x, y }}>
         <motion.div
           className="-translate-x-6 -translate-y-2"
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, -12, 0], rotate: [-2, 2, -2] }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -87,31 +87,74 @@ const CursorMascot = ({ mood = 'idle' }: CursorMascotProps) => {
               initial={{ opacity: 0, y: 8, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -6, scale: 0.94 }}
-              className="mb-2 ml-16 rounded-2xl rounded-bl-sm bg-white px-3 py-1.5 text-[11px] font-bold text-slate-800 shadow-lg border border-orange-100 whitespace-nowrap"
+              className="mb-2 ml-16 rounded-2xl rounded-bl-sm bg-white px-4 py-2 text-[12px] font-bold text-indigo-900 shadow-xl border border-indigo-100 whitespace-nowrap"
             >
               {bubble}
             </motion.div>
           </AnimatePresence>
 
-          <svg width="132" height="156" viewBox="0 0 132 156" fill="none">
-            <ellipse cx="66" cy="148" rx="28" ry="6" fill="rgba(15,23,42,0.12)" />
-            <path d="M38 96C38 88 92 88 96 100C98 112 90 128 66 132C42 128 34 110 38 96Z" fill="#ea580c" />
-            <path d="M50 104C58 98 78 98 86 106" stroke="#fb923c" strokeWidth="3" strokeLinecap="round" />
-            <rect x="28" y="92" width="16" height="28" rx="8" fill="#c2410c" />
-            <rect x="88" y="92" width="16" height="28" rx="8" fill="#c2410c" />
-            <circle cx="66" cy="62" r="32" fill="#ffe4c4" />
-            <path d="M36 58C36 40 96 40 96 60C96 48 36 46 36 58Z" fill="#1e293b" />
-            <rect x="58" y="24" width="16" height="12" rx="3" fill="#1e293b" />
-            <path d="M30 58H102" stroke="#0f172a" strokeWidth="8" strokeLinecap="round" />
-            <circle cx="52" cy="64" r="8" fill="white" />
-            <circle cx="80" cy="64" r="8" fill="white" />
-            <motion.circle cx="52" cy="64" r="3.2" fill="#0f172a" style={{ x: pupilX, y: pupilY }} />
-            <motion.circle cx="80" cy="64" r="3.2" fill="#0f172a" style={{ x: pupilX, y: pupilY }} />
-            <path d="M58 78C62 82 70 82 74 78" stroke="#c2410c" strokeWidth="2.4" strokeLinecap="round" />
-            <circle cx="40" cy="72" r="3" fill="#fb7185" opacity="0.55" />
-            <circle cx="92" cy="72" r="3" fill="#fb7185" opacity="0.55" />
-            <path d="M96 88C110 78 118 92 108 104" stroke="#1e293b" strokeWidth="5" strokeLinecap="round" />
-            <circle cx="110" cy="106" r="6" fill="#fbbf24" />
+          <svg width="150" height="170" viewBox="0 0 150 170" fill="none">
+            {/* Shadow */}
+            <motion.ellipse 
+              cx="75" cy="160" rx="35" ry="6" fill="rgba(15,23,42,0.12)" 
+              animate={{ rx: [35, 28, 35], opacity: [0.12, 0.2, 0.12] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            
+            {/* Body (Shirt with Tie) */}
+            <path d="M45 106C45 94 105 94 105 106C108 120 98 140 75 144C52 140 42 120 45 106Z" fill="#e0e7ff" stroke="#3730a3" strokeWidth="4" />
+            <path d="M75 106L68 124L75 138L82 124L75 106Z" fill="#dc2626" /> {/* Tie */}
+            <path d="M55 106L75 116L95 106" fill="none" stroke="#3730a3" strokeWidth="3" strokeLinecap="round" /> {/* Collar */}
+
+            {/* Arms holding a book */}
+            <rect x="32" y="102" width="20" height="32" rx="10" fill="#c7d2fe" transform="rotate(15 42 118)" />
+            <rect x="98" y="102" width="20" height="32" rx="10" fill="#c7d2fe" transform="rotate(-15 108 118)" />
+
+            {/* Book */}
+            <path d="M35 125Q75 135 115 125L110 145Q75 155 40 145Z" fill="#facc15" stroke="#a16207" strokeWidth="3" strokeLinejoin="round" />
+            <path d="M75 130V150" stroke="#a16207" strokeWidth="3" strokeLinecap="round" />
+            <path d="M45 132Q75 140 70 140" stroke="#a16207" strokeWidth="2" strokeLinecap="round" />
+            <path d="M105 132Q75 140 80 140" stroke="#a16207" strokeWidth="2" strokeLinecap="round" />
+
+            {/* Head */}
+            <circle cx="75" cy="72" r="34" fill="#ffe4c4" />
+            
+            {/* Graduation Cap */}
+            <path d="M30 45L75 25L120 45L75 65Z" fill="#1e293b" />
+            <path d="M55 55V75C55 80 95 80 95 75V55" fill="#1e293b" />
+            <circle cx="75" cy="45" r="4" fill="#fbbf24" />
+            {/* Tassel */}
+            <motion.path d="M75 45Q105 45 115 65" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round" fill="none"
+              animate={{ d: ["M75 45Q105 45 115 65", "M75 45Q110 55 112 70", "M75 45Q105 45 115 65"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            
+            {/* Big Round Nerd Glasses */}
+            <circle cx="58" cy="72" r="14" fill="white" stroke="#0f172a" strokeWidth="4" />
+            <circle cx="92" cy="72" r="14" fill="white" stroke="#0f172a" strokeWidth="4" />
+            <path d="M72 72H78" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
+            <path d="M44 72H35" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
+            <path d="M106 72H115" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
+
+            {/* Pupils */}
+            <motion.circle cx="58" cy="72" r="5" fill="#0f172a" style={{ x: pupilX, y: pupilY }} />
+            <motion.circle cx="92" cy="72" r="5" fill="#0f172a" style={{ x: pupilX, y: pupilY }} />
+            
+            {/* Cheeks & Smile */}
+            <circle cx="45" cy="85" r="4" fill="#fb7185" opacity="0.6" />
+            <circle cx="105" cy="85" r="4" fill="#fb7185" opacity="0.6" />
+            <path d="M68 88C72 92 78 92 82 88" stroke="#c2410c" strokeWidth="2.5" strokeLinecap="round" />
+
+            {/* Floating Math/Idea Symbols */}
+            <motion.g animate={{ y: [0, -10, 0], opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}>
+              <text x="20" y="30" fontSize="16" fill="#fbbf24" fontWeight="bold">E=mc²</text>
+            </motion.g>
+            <motion.g animate={{ y: [0, -15, 0], opacity: [0, 1, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 1.5 }}>
+              <text x="120" y="20" fontSize="20" fill="#38bdf8" fontWeight="bold">💡</text>
+            </motion.g>
+            <motion.g animate={{ y: [0, -8, 0], opacity: [0, 1, 0] }} transition={{ duration: 1.8, repeat: Infinity, delay: 0.8 }}>
+              <text x="125" y="80" fontSize="18" fill="#a78bfa" fontWeight="bold">∑</text>
+            </motion.g>
           </svg>
         </motion.div>
       </motion.div>

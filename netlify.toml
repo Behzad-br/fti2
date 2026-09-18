@@ -1,10 +1,9 @@
 [build]
   base = "fti-journey-main"
-  publish = "dist"
+  publish = "fti-journey-main/dist"
   command = "npm run build"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-pm
