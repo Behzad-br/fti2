@@ -327,7 +327,7 @@ const About = () => {
                     transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                     className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium"
                   >
-                    We don't just process applications; we architect careers. Our journey started in 2012 with a simple mission: to provide honest, ethical, and world-class guidance to Pakistani students seeking global education.
+                    We don't just process applications; we architect careers. Our journey started in 2006 with a simple mission: to provide honest, ethical, and world-class guidance to Pakistani students seeking global education.
                   </motion.p>
 
                   <motion.div

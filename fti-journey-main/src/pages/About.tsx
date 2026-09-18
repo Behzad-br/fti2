@@ -44,7 +44,7 @@ const defaultTeam = [
 ];
 
 const journeyEvents = [
-  { year: '2012', title: 'Founding Year', description: 'FTI Consultants founded in Gujranwala with a vision to democratize international education.' },
+  { year: '2006', title: 'Founding Year', description: 'FTI Consultants founded in Gujranwala with a vision to democratize international education.' },
   { year: '2015', title: 'IELTS Academy Launch', description: 'Launched dedicated IELTS Academy with state-of-the-art language labs.' },
   { year: '2018', title: 'Regional Expansion', description: 'Expanded to Lahore and Islamabad to serve students across wider Punjab.' },
   { year: '2022', title: '10,000 Milestone', description: 'Celebrated 10,000+ successful student placements since our inception.' },
@@ -315,7 +315,7 @@ const About = () => {
                     transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                     className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium"
                   >
-                    We don't just process applications; we architect careers. Our journey started in 2012 with a simple mission: to provide honest, ethical, and world-class guidance to Pakistani students seeking global education.
+                    We don't just process applications; we architect careers. Our journey started in 2006 with a simple mission: to provide honest, ethical, and world-class guidance to Pakistani students seeking global education.
                   </motion.p>
 
                   <motion.div
