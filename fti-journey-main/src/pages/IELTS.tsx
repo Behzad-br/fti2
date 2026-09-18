@@ -17,7 +17,6 @@ import PromoBoard from '@/components/shared/PromoBoard';
 import FacultyGrid from '@/components/common/FacultyGrid';
 import IELTSHero from '@/components/ielts/IELTSHero';
 import PartnershipSection from '@/components/ielts/PartnershipSection';
-import AcademicDirectorSection from '@/components/ielts/AcademicDirectorSection';
 import AEOTestingCenter from '@/components/ielts/AEOTestingCenter';
 import IELTSServices from '@/components/ielts/IELTSServices';
 import IELTSBooks from '@/components/ielts/IELTSBooks';
@@ -61,7 +60,6 @@ const IELTS = () => {
         <div className="relative z-10">
           <PartnershipSection />
           <AEOTestingCenter />
-          <AcademicDirectorSection />
           <IELTSServices />
         </div>
 
@@ -72,7 +70,7 @@ const IELTS = () => {
           <div className="container mx-auto px-4 mb-16 relative z-10">
             <div className="text-center">
 
-              <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Our Recent <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Successes</span></h2>
+              <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Stories</span></h2>
             </div>
           </div>
           

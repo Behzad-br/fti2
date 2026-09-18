@@ -35,8 +35,8 @@ const ManageContactSubmissions = () => {
         try {
             setLoading(true);
             const url = filter === 'all'
-                ? '/api/contact'
-                : `/api/contact?isRead=${filter === 'read'}`;
+                ? `${API_BASE_URL}/contact`
+                : `${API_BASE_URL}/contact?isRead=${filter === 'read'}`;
             const res = await fetch(url, { headers: authHeaders });
             if (res.ok) {
                 const data = await res.json();

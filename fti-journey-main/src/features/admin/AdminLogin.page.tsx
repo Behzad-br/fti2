@@ -29,8 +29,8 @@ const AdminLogin = () => {
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            email: '',
+            password: '',
         },
     });
 

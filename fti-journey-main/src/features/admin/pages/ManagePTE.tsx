@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCMS } from '@/store/CMSContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +14,12 @@ const ManagePTE = () => {
   const [heroTitle, setHeroTitle] = useState(cmsData.pteHeroTitle);
   const [heroDescription, setHeroDescription] = useState(cmsData.pteHeroDescription);
   const [successImages, setSuccessImages] = useState(cmsData.pteSuccessImages);
+
+  useEffect(() => {
+    setHeroTitle(cmsData.pteHeroTitle);
+    setHeroDescription(cmsData.pteHeroDescription);
+    setSuccessImages(cmsData.pteSuccessImages);
+  }, [cmsData.pteHeroTitle, cmsData.pteHeroDescription, cmsData.pteSuccessImages]);
 
   const handleSave = () => {
     updateCMSData({

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight, GraduationCap, Banknote, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Marquee from 'react-fast-marquee';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const destinations = [
   {
@@ -104,7 +104,33 @@ const destinations = [
 ];
 
 const DestinationsSection = () => {
-  const [direction, setDirection] = useState<'left' | 'right'>('left');
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'start'
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(() => {
+      if (emblaApi.clickAllowed()) {
+        emblaApi.scrollNext();
+      }
+    }, 3000);
+    const stopAutoplay = () => clearInterval(interval);
+    emblaApi.on('pointerDown', stopAutoplay);
+    return () => {
+      clearInterval(interval);
+      emblaApi.off('pointerDown', stopAutoplay);
+    };
+  }, [emblaApi]);
 
   return (
     <section className="py-24 bg-background relative overflow-hidden flex flex-col items-center z-10">
@@ -141,16 +167,16 @@ const DestinationsSection = () => {
           {/* Navigation Buttons - Smaller and Centered */}
           <div className="flex gap-4 relative z-20">
             <button
-              onClick={() => setDirection('right')}
-              className={`w-10 h-10 rounded-full border flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 active:scale-95 ${direction === 'right' ? 'bg-primary text-white border-primary shadow-hover' : 'bg-white border-border/50 hover:bg-primary/10 text-foreground'}`}
-              aria-label="Scroll Right"
+              onClick={scrollPrev}
+              className="w-10 h-10 rounded-full border flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 active:scale-95 bg-white border-border/50 hover:bg-primary/10 text-foreground"
+              aria-label="Previous slide"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => setDirection('left')}
-              className={`w-10 h-10 rounded-full border flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 active:scale-95 ${direction === 'left' ? 'bg-primary text-white border-primary shadow-hover' : 'bg-white border-border/50 hover:bg-primary/10 text-foreground'}`}
-              aria-label="Scroll Left"
+              onClick={scrollNext}
+              className="w-10 h-10 rounded-full border flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 active:scale-95 bg-primary text-white border-primary shadow-hover hover:opacity-90"
+              aria-label="Next slide"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -158,20 +184,13 @@ const DestinationsSection = () => {
         </motion.div>
       </div>
 
-      {/* Infinite Scrolling Marquee */}
-      <div className="w-full overflow-visible py-4 -my-4 relative z-0">
-        <Marquee
-          speed={40}
-          pauseOnHover={true}
-          gradient={false}
-          direction={direction}
-          className="overflow-visible"
-        >
-          <div className="flex gap-6 pr-6 py-4">
-            {destinations.map((dest, index) => (
+      {/* Embla Carousel */}
+      <div className="w-full overflow-hidden py-4 -my-4 relative z-0 pl-4 md:pl-8 lg:pl-12 cursor-grab active:cursor-grabbing" ref={emblaRef}>
+        <div className="flex -ml-6 py-4">
+          {destinations.map((dest, index) => (
+            <div key={`${dest.name}-${index}`} className="flex-[0_0_280px] md:flex-[0_0_320px] lg:flex-[0_0_350px] min-w-0 pl-6">
               <motion.div
-                key={`${dest.name}-${index}`}
-                className="w-[280px] md:w-[320px] lg:w-[350px] shrink-0"
+                className="w-full h-full"
                 whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
@@ -223,9 +242,9 @@ const DestinationsSection = () => {
                   </div>
                 </Link>
               </motion.div>
-            ))}
-          </div>
-        </Marquee>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

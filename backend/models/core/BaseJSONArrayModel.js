@@ -47,6 +47,15 @@ class BaseJSONArrayModel {
         return data.find(item => item.id === id || item._id === id);
     }
 
+    updateById(id, updates) {
+        const data = this.getAll();
+        const index = data.findIndex(item => item.id === id || item._id === id);
+        if (index === -1) return null;
+        data[index] = { ...data[index], ...updates, updatedAt: new Date().toISOString() };
+        this.saveAll(data);
+        return data[index];
+    }
+
     deleteById(id) {
         let data = this.getAll();
         data = data.filter(item => item.id !== id && item._id !== id);

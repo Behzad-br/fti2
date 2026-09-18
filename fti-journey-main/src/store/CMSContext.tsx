@@ -13,23 +13,11 @@ const defaultCMSData: CMSData = {
   pteHeroTitle: 'PTE Academic Preparation',
   pteHeroDescription:
     'Master the computer-based PTE test with our cutting-edge training facilities and AI-powered practice systems.',
-  pteSuccessImages: [
-    '/success-stories/story-1.png',
-    '/success-stories/story-2.png',
-    '/success-stories/story-3.png',
-    '/success-stories/story-4.png',
-    '/success-stories/story-5.png',
-  ],
+  pteSuccessImages: [],
 
   ieltsHeroTitle: 'Master IELTS with FTI',
   ieltsHeroDescription: 'Join the biggest IELTS campus in Gujranwala division.',
-  ieltsSuccessImages: [
-    '/success-stories/story-1.png',
-    '/success-stories/story-2.png',
-    '/success-stories/story-3.png',
-    '/success-stories/story-4.png',
-    '/success-stories/story-5.png',
-  ],
+  ieltsSuccessImages: [],
 
   homeHeroTitle: 'Your Journey to Global Success',
   homeHeroDescription: 'Expert consultancy for studying abroad.',
@@ -96,6 +84,31 @@ const defaultCMSData: CMSData = {
 // ─────────────────────────────────────────────
 //  Context
 // ─────────────────────────────────────────────
+const PLACEHOLDER_STORY_IMAGES = new Set([
+  '/success-stories/story-1.png',
+  '/success-stories/story-2.png',
+  '/success-stories/story-3.png',
+  '/success-stories/story-4.png',
+  '/success-stories/story-5.png',
+]);
+
+const sanitizeExamImages = (arr: unknown): string[] =>
+  Array.isArray(arr)
+    ? arr.filter((src): src is string => typeof src === 'string' && src.length > 0 && !PLACEHOLDER_STORY_IMAGES.has(src))
+    : [];
+
+const persistCmsCache = (data: CMSData) => {
+  try {
+    const slim: CMSData = {
+      ...data,
+      pteSuccessImages: data.pteSuccessImages.filter((src) => !src.startsWith('data:')),
+      ieltsSuccessImages: data.ieltsSuccessImages.filter((src) => !src.startsWith('data:')),
+      homeSuccessImages: data.homeSuccessImages.filter((src) => !src.startsWith('data:')),
+    };
+    localStorage.setItem('fti_cms_data', JSON.stringify(slim));
+  } catch { /* quota / private mode */ }
+};
+
 const CMSContext = createContext<CMSContextType | undefined>(undefined);
 
 // ─────────────────────────────────────────────
@@ -110,6 +123,8 @@ export const CMSProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         return {
           ...defaultCMSData,
           ...parsed,
+          pteSuccessImages: sanitizeExamImages(parsed.pteSuccessImages),
+          ieltsSuccessImages: sanitizeExamImages(parsed.ieltsSuccessImages),
           homeUniversityPartners: parsed.homeUniversityPartners ?? defaultCMSData.homeUniversityPartners,
           eventsList: parsed.eventsList ?? defaultCMSData.eventsList,
           eventGalleryList: parsed.eventGalleryList ?? defaultCMSData.eventGalleryList,
@@ -119,6 +134,7 @@ export const CMSProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return defaultCMSData;
   });
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isCmsReady, setIsCmsReady] = useState(false);
 
   // ── Fetch from backend on mount ──────────────────────────────────────
   useEffect(() => {
@@ -133,16 +149,18 @@ export const CMSProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
           eventGalleryList: remotePayload.eventGalleryList ?? defaultCMSData.eventGalleryList,
         };
         setCmsData(merged);
-        localStorage.setItem('fti_cms_data', JSON.stringify(merged));
+        persistCmsCache(merged);
       }
     }).catch(() => {
       console.warn('[CMS] Backend unavailable, using localStorage fallback.');
+    }).finally(() => {
+      setIsCmsReady(true);
     });
   }, []);
 
   // ── Persist to localStorage ──────────────────────────────────────────
   useEffect(() => {
-    localStorage.setItem('fti_cms_data', JSON.stringify(cmsData));
+    persistCmsCache(cmsData);
   }, [cmsData]);
 
   // ── Update — optimistic local + backend sync ─────────────────────────
@@ -168,7 +186,7 @@ export const CMSProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     });
 
   return (
-    <CMSContext.Provider value={{ cmsData, updateCMSData, uploadImage, isSyncing }}>
+    <CMSContext.Provider value={{ cmsData, updateCMSData, uploadImage, isSyncing, isCmsReady }}>
       {children}
     </CMSContext.Provider>
   );

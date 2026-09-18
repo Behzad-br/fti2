@@ -1,59 +1,55 @@
 const CMSData = require('../models/CMSData');
+const CMSStore = require('../models/core/CMSStore');
+const { isDbReady } = require('../utils/dbReady');
 
-// ─────────────────────────────────────────────
-//  CMS Controller
-//  Business logic extracted from cmsRoutes.js
-// ─────────────────────────────────────────────
-
-/**
- * @desc    Get all CMS data
- * @route   GET /api/cms
- * @access  Public
- */
 const getCMSData = async (req, res) => {
     try {
+        if (!isDbReady()) {
+            return res.json(CMSStore.getAll());
+        }
+
         const cmsRecords = await CMSData.find({});
         const result = {};
-
-        // Convert array of documents → single object with keys
         cmsRecords.forEach(record => {
             result[record.key] = record.data;
         });
-
         res.json(result);
     } catch (error) {
         console.error('[CMSController] getCMSData error:', error);
-        res.status(500).json({ message: 'Server error fetching CMS data' });
+        res.json(CMSStore.getAll());
     }
 };
 
-/**
- * @desc    Update CMS data (merge with existing)
- * @route   POST /api/cms/update
- * @access  Private (admin/employee)
- */
 const updateCMSData = async (req, res) => {
     try {
         const updates = req.body;
 
-        // Save under a single 'global_cms_data' key to match frontend localStorage logic
+        if (!isDbReady()) {
+            const data = CMSStore.update(updates);
+            return res.json(data);
+        }
+
         let cmsDoc = await CMSData.findOne({ key: 'global_cms_data' });
 
         if (!cmsDoc) {
             cmsDoc = new CMSData({ key: 'global_cms_data', data: updates });
         } else {
-            // Deep merge: existing + new updates
             cmsDoc.data = { ...cmsDoc.data, ...updates };
         }
 
-        // Tell Mongoose that the Mixed type 'data' was modified
         cmsDoc.markModified('data');
         await cmsDoc.save();
+        CMSStore.update(updates);
 
         res.json(cmsDoc.data);
     } catch (error) {
         console.error('[CMSController] updateCMSData error:', error);
-        res.status(500).json({ message: 'Server error updating CMS data' });
+        try {
+            const data = CMSStore.update(req.body);
+            return res.json(data);
+        } catch {
+            res.status(500).json({ message: 'Server error updating CMS data' });
+        }
     }
 };
 

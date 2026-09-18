@@ -32,7 +32,17 @@ const importData = async () => {
             }
         ];
 
-        await User.insertMany(users);
+        const bcrypt = require('bcryptjs');
+        const salt = await bcrypt.genSalt(10);
+        
+        const hashedUsers = await Promise.all(users.map(async (user) => {
+            return {
+                ...user,
+                password: await bcrypt.hash(user.password, salt)
+            };
+        }));
+
+        await User.insertMany(hashedUsers);
 
         console.log('Data Imported! Users created successfully.');
         process.exit();

@@ -63,4 +63,5 @@ export interface CMSContextType {
   updateCMSData: (newData: Partial<CMSData>) => Promise<void>;
   uploadImage: (file: File) => Promise<string>;
   isSyncing: boolean;
+  isCmsReady: boolean;
 }

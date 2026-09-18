@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { submitTestQuery, getTestQueries } = require('../controllers/testQuery.controller');
-const { protect, admin } = require('../middleware/authMiddleware');
+const { protect, staff } = require('../middleware/authMiddleware');
+const { formLimiter } = require('../middleware/rateLimiter');
 
 // Public route to submit a query
-router.post('/', submitTestQuery);
+router.post('/', formLimiter, submitTestQuery);
 
-// Private/Admin route to get all queries
-router.get('/', protect, admin, getTestQueries);
+// Private staff route to get all queries
+router.get('/', protect, staff, getTestQueries);
 
 module.exports = router;

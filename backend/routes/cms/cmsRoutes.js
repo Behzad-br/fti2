@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getCMSData, updateCMSData } = require('../../controllers/cms.controller');
-const { protect } = require('../../middleware/authMiddleware');
+const { protect, staff } = require('../../middleware/authMiddleware');
 
 // ─────────────────────────────────────────────
 //  CMS Routes
@@ -12,6 +12,6 @@ const { protect } = require('../../middleware/authMiddleware');
 router.get('/', getCMSData);
 
 // POST /api/cms/update  — Private admin/employee (CMS editor)
-router.post('/update', protect, updateCMSData);
+router.post('/update', protect, staff, updateCMSData);
 
 module.exports = router;

@@ -86,5 +86,17 @@
     "targetCountry": "Europe",
     "message": "",
     "createdAt": "2026-07-21T13:43:55.835Z"
+  },
+  {
+    "_id": "1788813026168",
+    "id": "1788813026168",
+    "name": "Test Student",
+    "phone": "03007442732",
+    "email": "student@test.com",
+    "address": "",
+    "currentQualification": "",
+    "targetCountry": "Canada",
+    "message": "Need counselling",
+    "createdAt": "2026-09-07T20:30:26.168Z"
   }
 ]

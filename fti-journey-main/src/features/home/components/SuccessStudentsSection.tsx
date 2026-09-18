@@ -4,8 +4,15 @@ import { useCMS } from '@/store/CMSContext';
 
 
 const SuccessStudentsSection = () => {
-    const { cmsData } = useCMS();
-    const visaPosters = cmsData.homeSuccessImages;
+    const { cmsData, isCmsReady } = useCMS();
+    const uploadedPosters = [
+      ...(cmsData.homeSuccessImages || []),
+      ...(cmsData.pteSuccessImages || []),
+      ...(cmsData.ieltsSuccessImages || []),
+    ].filter((src) => src.startsWith('data:'));
+    const visaPosters = uploadedPosters.length
+      ? uploadedPosters
+      : (isCmsReady ? cmsData.homeSuccessImages : []);
     return (
         <section className="py-10 bg-[#f5f5f5] relative overflow-hidden">
 

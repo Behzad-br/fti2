@@ -705,7 +705,7 @@ const PTE = () => {
         <AnimatedSection className="py-32 overflow-hidden bg-[#f5f5f5] relative">
           <div className="container mx-auto px-4 mb-16 relative z-10">
             <div className="text-center">
-              <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Our Recent <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Successes</span></h2>
+              <h2 className="text-4xl md:text-6xl font-black text-center tracking-tight text-slate-900 mb-4">Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Stories</span></h2>
             </div>
           </div>
 
@@ -714,7 +714,10 @@ const PTE = () => {
             <div className="absolute right-0 top-0 h-full w-20 md:w-60 bg-gradient-to-l from-[#f5f5f5] to-transparent z-20 pointer-events-none" />
 
             <Marquee gradient={false} speed={50} pauseOnHover={true} direction="left" className="py-8">
-              {cmsData.pteSuccessImages.map((src, i) => (
+              {[
+                '/success-stories/pte/pte-1.jpg',
+                '/success-stories/pte/pte-2.jpg',
+              ].map((src, i) => (
                 <div key={i} className="mx-5 flex-shrink-0 group">
                   <motion.div
                     whileHover={{ scale: 1.05 }}

@@ -7,7 +7,7 @@ const {
     markContactRead,
     deleteContact,
 } = require('../../controllers/contact.controller');
-const { protect } = require('../../middleware/authMiddleware');
+const { protect, staff } = require('../../middleware/authMiddleware');
 const validateResource = require('../../middleware/validateResource');
 const { formLimiter } = require('../../middleware/rateLimiter');
 const { contactSchema, markReadSchema } = require('../../schemas/contact.schema');
@@ -21,15 +21,15 @@ const { contactSchema, markReadSchema } = require('../../schemas/contact.schema'
 router.post('/', formLimiter, validateResource(contactSchema), submitContact);
 
 // GET  /api/contact       — Private (Admin view all)
-router.get('/', protect, getAllContacts);
+router.get('/', protect, staff, getAllContacts);
 
 // GET  /api/contact/:id   — Private (Admin view one)
-router.get('/:id', protect, getContactById);
+router.get('/:id', protect, staff, getContactById);
 
 // PATCH /api/contact/:id/read — Private (Mark as read/unread)
-router.patch('/:id/read', protect, validateResource(markReadSchema), markContactRead);
+router.patch('/:id/read', protect, staff, validateResource(markReadSchema), markContactRead);
 
 // DELETE /api/contact/:id — Private (Delete inquiry)
-router.delete('/:id', protect, deleteContact);
+router.delete('/:id', protect, staff, deleteContact);
 
 module.exports = router;

@@ -1,9 +1,12 @@
 const rateLimit = require('express-rate-limit');
 
+const skipInDev = () => process.env.NODE_ENV === 'development';
+
 // General API Rate Limiter
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    skip: skipInDev,
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
     message: {
@@ -16,6 +19,7 @@ const apiLimiter = rateLimit({
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 10, // Limit each IP to 10 requests per `window` for auth routes
+    skip: skipInDev,
     standardHeaders: true,
     legacyHeaders: false,
     message: {
@@ -28,6 +32,7 @@ const authLimiter = rateLimit({
 const formLimiter = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 hour
     max: 5, // Limit each IP to 5 form submissions per hour
+    skip: skipInDev,
     standardHeaders: true,
     legacyHeaders: false,
     message: {

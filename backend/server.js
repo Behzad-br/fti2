@@ -80,8 +80,11 @@ app.use(cors({
 // Global Rate Limiter
 app.use('/api', apiLimiter);
 
-// Middleware
-app.use(express.json({ limit: '50mb' })); // Support large images (base64)
+// JSON body limits — keep public payloads small; CMS image updates need more room
+app.use((req, res, next) => {
+    const isCmsWrite = req.method === 'POST' && req.path.startsWith('/api/cms');
+    express.json({ limit: isCmsWrite ? '15mb' : '1mb' })(req, res, next);
+});
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Health Check
